@@ -1,25 +1,70 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
+import React, { useState } from "react";
 
-function App() {
+// My imports.
+import { EmojiCards } from "./components/EmojiCards";
+import { BtnGetEmojis, SearchName } from "./components/BtnGetEmojis";
+
+
+
+// Base URL API.
+const baseUrl = "https://emojihub.yurace.pro/api";
+
+export function App() {
+
+  const [emojiList, setEmojiList] = useState([])
+	const [isSearch, setIsSearch] = useState(false)
+
+  // Function in charge of consuming all data to the API.
+	const loadAllData = () => {
+		axios.get(`${baseUrl}/all/`).then(response => {
+      setEmojiList(convertJsonToArray(response.data))
+			setIsSearch(true)
+		})
+	}
+
+   // Function in charge of consuming random data to the API.
+	const loadRandomData = () => {
+		axios.get(`${baseUrl}/random/`).then(response => {
+      setEmojiList(convertJsonToArray(response.data))
+			setIsSearch(true)
+		})
+	}
+
+  // Function in charge of consuming data to the API by category-name.
+  const loadDataCategory = (categoryName) => {
+		axios.get(`${baseUrl}/category/${categoryName}`).then(response => {
+      setEmojiList(convertJsonToArray(response.data))
+			setIsSearch(true)
+	  })
+	}
+
+  // Function in charge of consuming data to the API by group-name.
+  const loadDataGroup = (groupName) => {
+		axios.get(`${baseUrl}/group/${groupName}`).then(response => {
+      setEmojiList(convertJsonToArray(response.data))
+			setIsSearch(true)
+	  })
+	}
+
+	const convertJsonToArray = (json) => {
+    return json.map(item => ({
+			name: item.name,
+			category: item.category,
+			group: item.group,
+			htmlCode: item.htmlCode,
+			uniCode: item.unicode,
+    }));
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+		<div className ="justify-items-center">
+			<BtnGetEmojis onClickSearch={loadAllData} />
+			{
+				isSearch ? <EmojiCards emojis={emojiList} /> : <div style={{textAlign: 'center'}}><p>No hay</p></div>
+			}
+		</div>
+	);
 }
 
 export default App;

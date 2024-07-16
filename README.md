@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Simple Application Developed with the React Library to Consume the EmojiHub Microservice.
+
+[EmojiHub](https://github.com/cheatsnake/emojihub)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -1,13 +1,58 @@
-body {
+/**
+ * Import Tailwind CSS.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Custom CSS.
+ */
+
+body{
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #233876;
+  color: white;
 }
 
-code {
+code{
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Styles Cards. */
+.card-wrapper{
+  margin-bottom: 10px;
+  text-align: center;
+  color: white;
+  min-width: 200px;
+  min-height: 270px;
+}
+
+.emoji-wrapper{
+  margin-bottom: 15px;
+}
+
+.btn-card{
+  padding: 10px 20px;
+  margin: 0 0 15px 0;
+}
+
+/* Styles Emoji List. */
+.emoji-list-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.btn-get-emojis-wrapper{
+  display: flex;
+  justify-content: center;
+  margin: 20px;
 }
