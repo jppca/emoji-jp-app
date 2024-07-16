@@ -1,8 +1,8 @@
 import React from "react";
 
 // My imports.
-import {List} from "./List";
-import {Card} from "./Card";
+import { List } from "./List";
+import { Card } from "./Card";
 
 export function EmojiCards({ emojis }) {
   return (
